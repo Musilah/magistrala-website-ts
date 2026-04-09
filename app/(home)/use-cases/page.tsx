@@ -30,13 +30,13 @@ const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Magistrala IoT Platform Use Cases",
-  url: "https://magistrala.absmach.eu/use-cases",
+  url: "https://magistrala.absmach.eu/use-cases/",
   itemListElement: useCases.map((uc, i) => ({
     "@type": "ListItem",
     position: i + 1,
     name: uc.title,
     description: uc.summary,
-    url: `https://magistrala.absmach.eu/use-cases/${uc.slug}`,
+    url: `https://magistrala.absmach.eu/use-cases/${uc.slug}/`,
   })),
 };
 

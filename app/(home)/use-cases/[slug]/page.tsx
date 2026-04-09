@@ -47,6 +47,26 @@ export default async function UseCaseDetailPage({
   const prev = idx > 0 ? useCases[idx - 1] : null;
   const next = idx < useCases.length - 1 ? useCases[idx + 1] : null;
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: uc.title,
+    description: uc.summary,
+    url: `https://magistrala.absmach.eu/use-cases/${slug}/`,
+    image: `https://magistrala.absmach.eu${uc.dashboard.image}`,
+    author: {
+      "@type": "Organization",
+      "@id": "https://magistrala.absmach.eu/#publisher",
+      name: "Abstract Machines",
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": "https://magistrala.absmach.eu/#publisher",
+      name: "Abstract Machines",
+    },
+    dateModified: "2026-04-08",
+  };
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -55,25 +75,30 @@ export default async function UseCaseDetailPage({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://magistrala.absmach.eu",
+        item: "https://magistrala.absmach.eu/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Use Cases",
-        item: "https://magistrala.absmach.eu/use-cases",
+        item: "https://magistrala.absmach.eu/use-cases/",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: uc.title,
-        item: `https://magistrala.absmach.eu/use-cases/${slug}`,
+        item: `https://magistrala.absmach.eu/use-cases/${slug}/`,
       },
     ],
   };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled static JSON-LD
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <script
         type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled static JSON-LD

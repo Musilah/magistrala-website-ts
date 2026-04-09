@@ -19,6 +19,9 @@ export const metadata = createMetadata({
 export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={rubik.variable} suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://deployments.absmach.eu" />
+      </head>
       <body className="flex flex-col min-h-screen font-(family-name:--font-rubik)">
         <Provider>{children}</Provider>
       </body>
